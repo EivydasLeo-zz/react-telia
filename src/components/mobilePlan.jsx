@@ -4,15 +4,18 @@ class MobilePlan extends Component {
   state = {};
   render() {
     return (
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-          <a href="/" className="btn btn-primary">
-            Go somewhere
-          </a>
+      <div className="mobile-plan">
+        <h6 className="plan__header">Mobilus START 1</h6>
+        <h2 className="plan__dataAllow">1 GB</h2>
+        <small className="plan__dataEU">Iš jų 1GB ES/EE</small>
+        <p className="plan__min-sms">Iš jų 1GB ES/EE</p>
+        <div className="plan__features">Sarasas</div>
+        <div className="plan__bottom">
+          <div className="bottom__price-part">
+            <h3>9,00 eur/men</h3>
+            <small>24 mėn. sutartis</small>
+          </div>
+          <button className="plan__cta">Domina</button>
         </div>
       </div>
     );
