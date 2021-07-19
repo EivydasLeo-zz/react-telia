@@ -8,7 +8,7 @@ class MobilePlan extends Component {
         <h6 className="plan__header">Mobilus START 1</h6>
         <h2 className="plan__dataAllow">1 GB</h2>
         <small className="plan__dataEU">Iš jų 1GB ES/EE</small>
-        <p className="plan__min-sms">Iš jų 1GB ES/EE</p>
+        <p className="plan__min-sms">Neribotos MIN ir SMS</p>
         <div className="plan__features">Sarasas</div>
         <div className="plan__bottom">
           <div className="bottom__price-part">
