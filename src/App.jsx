@@ -9,33 +9,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      beIsipareiojimu: true,
+      beIsipareigojimu: true,
       mobile1: {},
+      allPlans: [],
     };
   }
-
-  // component did mount hook parsisiusnciam plan1.json faila ir issaugom state
-
-  // perduodam mobile1 i MobilePlan
-
-  // MobilePlan pasiimam duomenis ir uzpildom kortele
 
   handleRadio = (val) => {
     console.log('radio was pressed');
     console.log(val);
     // jei gaunu commit tai nustatau busena  i atitinkama
     if (val === 'commit') {
-      this.setState({ beIsipareiojimu: false });
+      this.setState({ beIsipareigojimu: false });
     } else {
-      this.setState({ beIsipareiojimu: true });
+      this.setState({ beIsipareigojimu: true });
     }
     // arba priesingai
   };
 
   async componentDidMount() {
     const { data: dataAxios } = await axios.get('data/plan1.json');
+    const { data: allPlans } = await axios.get('data/allplans.json');
     console.log(dataAxios);
-    this.setState({ mobile1: dataAxios });
+    this.setState({ mobile1: dataAxios, allPlans: allPlans });
   }
 
   render() {
@@ -45,11 +41,13 @@ class App extends Component {
           <h1>Mobiliojo ryšio planai</h1>
           <p>Visos Lietuvoje turimo plano naudos galioja Baltijos ir Skandinavijos šalyse.</p>
           <div className="controls d-flex">
-            <Commitment handleRadio={this.handleRadio} noCommitment={this.state.beIsipareiojimu} />
+            <Commitment handleRadio={this.handleRadio} noCommitment={this.state.beIsipareigojimu} />
             <HaveServices />
           </div>
           <main className="plan-cards">
-            <MobilePlan beIsipareiojimu={this.state.beIsipareiojimu} plan={this.state.mobile1} />
+            {this.state.allPlans.map((planObj) => (
+              <MobilePlan key={planObj.headerTitle} beIsipareigojimu={this.state.beIsipareigojimu} plan={planObj} />
+            ))}
           </main>
         </div>
       </div>
