@@ -29,7 +29,7 @@ class App extends Component {
 
   async componentDidMount() {
     const { data: dataAxios } = await axios.get('data/plan1.json');
-    const { data: allPlans } = await axios.get('data/allplans.json');
+    const { data: allPlans } = await axios.get('data/allPlans.json');
     console.log(dataAxios);
     this.setState({ mobile1: dataAxios, allPlans: allPlans });
   }
@@ -45,7 +45,7 @@ class App extends Component {
             <HaveServices />
           </div>
           <main className="plan-cards">
-            {this.state.allPlans.map((planObj) => (
+            {this.state.allPlans.map((planObj, i) => (
               <MobilePlan key={planObj.headerTitle} beIsipareigojimu={this.state.beIsipareigojimu} plan={planObj} />
             ))}
           </main>
