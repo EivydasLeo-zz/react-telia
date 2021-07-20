@@ -16,14 +16,6 @@ class App extends Component {
 
   // component did mount hook parsisiusnciam plan1.json faila ir issaugom state
 
-  async componentDidMount() {
-    // const res = await fetch('/data/plan1.json');
-    // const data = await res.json();
-    // console.log(data);
-
-    const { data: resultAxios } = await axios.get('/data/plan1.json');
-    console.log({ resultAxios });
-  }
   // perduodam mobile1 i MobilePlan
 
   // MobilePlan pasiimam duomenis ir uzpildom kortele
@@ -40,6 +32,12 @@ class App extends Component {
     // arba priesingai
   };
 
+  async componentDidMount() {
+    const { data: dataAxios } = await axios.get('data/plan1.json');
+    console.log(dataAxios);
+    this.setState({ mobile1: dataAxios });
+  }
+
   render() {
     return (
       <div className="App">
@@ -51,7 +49,7 @@ class App extends Component {
             <HaveServices />
           </div>
           <main className="plan-cards">
-            <MobilePlan />
+            <MobilePlan plan={this.state.mobile1} />
           </main>
         </div>
       </div>
