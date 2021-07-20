@@ -3,12 +3,43 @@ import './App.css';
 import Commitment from './components/commitment';
 import HaveServices from './components/haveServices';
 import MobilePlan from './components/mobilePlan';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      beIsipareiojimu: true,
+      mobile1: {},
+    };
   }
+
+  // component did mount hook parsisiusnciam plan1.json faila ir issaugom state
+
+  async componentDidMount() {
+    // const res = await fetch('/data/plan1.json');
+    // const data = await res.json();
+    // console.log(data);
+
+    const { data: resultAxios } = await axios.get('/data/plan1.json');
+    console.log({ resultAxios });
+  }
+  // perduodam mobile1 i MobilePlan
+
+  // MobilePlan pasiimam duomenis ir uzpildom kortele
+
+  handleRadio = (val) => {
+    console.log('radio was pressed');
+    console.log(val);
+    // jei gaunu commit tai nustatau busena  i atitinkama
+    if (val === 'commit') {
+      this.setState({ beIsipareiojimu: false });
+    } else {
+      this.setState({ beIsipareiojimu: true });
+    }
+    // arba priesingai
+  };
+
   render() {
     return (
       <div className="App">
@@ -16,7 +47,7 @@ class App extends Component {
           <h1>Mobiliojo ryšio planai</h1>
           <p>Visos Lietuvoje turimo plano naudos galioja Baltijos ir Skandinavijos šalyse.</p>
           <div className="controls d-flex">
-            <Commitment />
+            <Commitment handleRadio={this.handleRadio} noCommitment={this.state.beIsipareiojimu} />
             <HaveServices />
           </div>
           <main className="plan-cards">

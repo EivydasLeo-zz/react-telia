@@ -2,28 +2,20 @@ import React, { Component } from 'react';
 import CustomRadio from './common/customRadio';
 
 class Commitment extends Component {
-  handleRadio = () => {
-    console.log('radio was pressed');
-    // atvaizduoti 24men. is CustomRadio komponento vidaus
-
-    // pakeisti i teksta is not slected i selected kai paspaudziam ant mygtuko
-
-    // iskviesti handleRadio funkcija is CustomRadio componento
-  };
-
-  state = {};
   render() {
     return (
       <div className="commitment-component">
         <div className="c__selection">
-          <span className="c__select">
-            <CustomRadio>24 men.</CustomRadio>
-          </span>
-          <span className="c__select-title">24 men</span>
+          <CustomRadio value="commit" checked={!this.props.noCommitment} onClick={this.props.handleRadio}>
+            24 men.
+          </CustomRadio>
         </div>
         <div className="c__selection">
-          <span className="c__select"></span>
-          <span className="c__select-title">Be isipareigojimu</span>
+          <span className="c__select">
+            <CustomRadio value="noCommit" checked={this.props.noCommitment} onClick={this.props.handleRadio}>
+              Be isipareigojimu
+            </CustomRadio>
+          </span>
         </div>
       </div>
     );
