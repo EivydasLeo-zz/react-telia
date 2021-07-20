@@ -49,7 +49,7 @@ class App extends Component {
             <HaveServices />
           </div>
           <main className="plan-cards">
-            <MobilePlan plan={this.state.mobile1} />
+            <MobilePlan beIsipareiojimu={this.state.beIsipareiojimu} plan={this.state.mobile1} />
           </main>
         </div>
       </div>
